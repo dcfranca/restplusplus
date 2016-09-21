@@ -5,10 +5,13 @@
 #ifndef REST_PIZZAREST_H
 #define REST_PIZZAREST_H
 
-#include ""
+#include "../include/BaseRESTRequestHandler.h"
 
 
-class PizzaREST: public  {
+class PizzaREST: public BaseRESTRequestHandler {
+
+public:
+    void get(HTTPServerRequest &request, HTTPServerResponse &response) override;
 
 };
 

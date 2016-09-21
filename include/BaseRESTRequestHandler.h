@@ -2,8 +2,8 @@
 // Created by Daniel Franca on 9/20/16.
 //
 
-#ifndef REST_GENERICRESTREQUESTHANDLER_H
-#define REST_GENERICRESTREQUESTHANDLER_H
+#ifndef REST_BASERESTREQUESTHANDLER_H
+#define REST_BASERESTREQUESTHANDLER_H
 
 #include "Poco/Net/HTTPRequestHandler.h"
 #include "Poco/Net/HTTPServerRequest.h"

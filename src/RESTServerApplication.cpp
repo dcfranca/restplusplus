@@ -17,10 +17,10 @@ using Poco::Util::Application;
 
 int RESTServerApplication::main(const std::vector<std::string>& args) {
     unsigned short port = (unsigned short)
-            config().getInt("RESTServerApplication.port", 8080);
+            config().getInt("RESTServerApplication.port", 9090);
 
     ServerSocket svs(port);
-    HTTPServer srv(new RESTRequestHandlerFactory(),
+    HTTPServer srv(new RESTRequestHandlerFactory(this->_router),
                    svs, new HTTPServerParams());
     srv.start();
     waitForTerminationRequest();

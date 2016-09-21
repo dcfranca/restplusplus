@@ -14,11 +14,18 @@ using Poco::Net::HTTPServerRequest;
 using Poco::Net::HTTPServerResponse;
 
 
-class GenericRESTRequestHandler: public HTTPRequestHandler {
+class BaseRESTRequestHandler: public HTTPRequestHandler {
 
 public:
-    void handleRequest(HTTPServerRequest& request, HTTPServerResponse& response);
+    BaseRESTRequestHandler(){};
+    ~BaseRESTRequestHandler(){};
+
+    virtual void handleRequest(HTTPServerRequest& request, HTTPServerResponse& response);
+    virtual void get(HTTPServerRequest& request, HTTPServerResponse& response);
+    virtual void post(HTTPServerRequest& request, HTTPServerResponse& response);
+    virtual void put(HTTPServerRequest& request, HTTPServerResponse& response);
+    virtual void del(HTTPServerRequest& request, HTTPServerResponse& response);
 };
 
 
-#endif //REST_GENERICRESTREQUESTHANDLER_H
+#endif //REST_BASERESTREQUESTHANDLER_H

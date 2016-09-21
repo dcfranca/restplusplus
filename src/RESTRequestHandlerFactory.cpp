@@ -3,12 +3,20 @@
 //
 
 #include "../include/RESTRequestHandlerFactory.h"
-#include "../include/GenericRESTRequestHandler.h"
+#include "../include/BaseRESTRequestHandler.h"
 
-HTTPRequestHandler*  RESTRequestHandlerFactory::createRequestHandler(const HTTPServerRequest& request) {
-    if (request.getURI() == "/") {
-        return new GenericRESTRequestHandler();
+#include <typeinfo>
+#include <iostream>
+
+HTTPRequestHandler* RESTRequestHandlerFactory::createRequestHandler(const HTTPServerRequest& request) {
+
+    std::cerr << "\nReceived request for: " << request.getURI();
+
+    if (this->_router.find(request.getURI()) != this->_router.end()) {
+
+        std::cerr << "\nRequest Handler found!\n";
+        return this->_router[request.getURI()];
     }
 
-    return new GenericRESTRequestHandler();
+    return new BaseRESTRequestHandler();
 }

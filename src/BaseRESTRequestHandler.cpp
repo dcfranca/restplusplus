@@ -12,3 +12,10 @@ void GenericRESTRequestHandler::handleRequest(HTTPServerRequest& request, HTTPSe
     ostr << "{\"status\": \"OK\"}";
 
 }
+
+/*
+ * route => std::unordered_map
+ * url -> class
+ * class must implement or get/post/put and inherit BaseRestRequestHandler
+ * the router is made by the factory
+ */

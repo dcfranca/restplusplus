@@ -7,7 +7,7 @@ include(.conan/conanbuildinfo.cmake)
 conan_basic_setup()
 
 set(SOURCE_FILES
-    src/main.cpp src/RESTRequestHandlerFactory.cpp src/GenericRESTRequestHandler.cpp src/RESTServerApplication.cpp include/RESTServerApplication.h)
+    src/main.cpp src/RESTRequestHandlerFactory.cpp src/BaseRESTRequestHandler.cpp src/RESTServerApplication.cpp src/PizzaREST.cpp include/PizzaREST.h)
 
 add_executable(REST__ ${SOURCE_FILES})
 

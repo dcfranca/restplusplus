@@ -16,10 +16,7 @@ using Poco::Net::HTTPServerParams;
 using Poco::Util::Application;
 
 int RESTServerApplication::main(const std::vector<std::string>& args) {
-    unsigned short port = (unsigned short)
-            config().getInt("RESTServerApplication.port", 9090);
-
-    ServerSocket svs(port);
+    ServerSocket svs(this->_port);
     HTTPServer srv(new RESTRequestHandlerFactory(this->_router),
                    svs, new HTTPServerParams());
     srv.start();

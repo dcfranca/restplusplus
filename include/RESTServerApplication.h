@@ -15,13 +15,15 @@ using Poco::Util::ServerApplication;
 
 class RESTServerApplication: public ServerApplication {
 public:
-    RESTServerApplication(RouteMap router):_router(router.begin(), router.end()){};
+    RESTServerApplication(RouteMap router, unsigned int port=8080):
+            _router(router), _port(port){};
 
 protected:
     int main(const std::vector<std::string>& args);
 
 private:
     RouteMap _router;
+    unsigned int _port;
 };
 
 

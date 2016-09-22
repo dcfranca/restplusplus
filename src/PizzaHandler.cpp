@@ -2,11 +2,11 @@
 // Created by Daniel Franca on 9/20/16.
 //
 
-#include "../include/PizzaREST.h"
+#include "../include/PizzaHandler.h"
 
 #include <iostream>
 
-void PizzaREST::get(HTTPServerRequest &request, HTTPServerResponse &response) {
+void PizzaHandler::get(HTTPServerRequest &request, HTTPServerResponse &response) {
 
     std::cerr << "\nFound Get method for Pizza!";
 

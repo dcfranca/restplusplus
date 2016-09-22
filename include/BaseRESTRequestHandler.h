@@ -13,13 +13,13 @@ using Poco::Net::HTTPRequestHandler;
 using Poco::Net::HTTPServerRequest;
 using Poco::Net::HTTPServerResponse;
 
+#include <unordered_map>
+#include <functional>
+
 
 class BaseRESTRequestHandler: public HTTPRequestHandler {
 
 public:
-    BaseRESTRequestHandler(){};
-    ~BaseRESTRequestHandler(){};
-
     virtual void handleRequest(HTTPServerRequest& request, HTTPServerResponse& response);
     virtual void get(HTTPServerRequest& request, HTTPServerResponse& response);
     virtual void post(HTTPServerRequest& request, HTTPServerResponse& response);
@@ -27,5 +27,21 @@ public:
     virtual void del(HTTPServerRequest& request, HTTPServerResponse& response);
 };
 
+
+class Controller {
+public:
+
+    template<typename T>
+    T* operator()() {
+        return new T;
+    }
+};
+
+using RouteMap = std::unordered_map<std::string, std::function<BaseRESTRequestHandler*()> >;
+
+template <typename T>
+auto handler() {
+    return [](){return new T;};
+}
 
 #endif //REST_BASERESTREQUESTHANDLER_H

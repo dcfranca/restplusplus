@@ -20,11 +20,11 @@ using Poco::Net::HTTPServerRequest;
 class RESTRequestHandlerFactory : public HTTPRequestHandlerFactory {
 
 public:
-    RESTRequestHandlerFactory(std::unordered_map<std::string, BaseRESTRequestHandler* > router):_router(router){};
+    RESTRequestHandlerFactory(RouteMap router):_router(router.begin(), router.end()){};
     HTTPRequestHandler* createRequestHandler(const HTTPServerRequest& request);
 
 private:
-    std::unordered_map<std::string, BaseRESTRequestHandler* > _router;
+    RouteMap _router;
 };
 
 

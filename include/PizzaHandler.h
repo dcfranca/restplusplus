@@ -8,10 +8,10 @@
 #include "../include/BaseRESTRequestHandler.h"
 
 
-class PizzaREST: public BaseRESTRequestHandler {
+class PizzaHandler: public BaseRESTRequestHandler {
 
 public:
-    PizzaREST():BaseRESTRequestHandler(){};
+    PizzaHandler():BaseRESTRequestHandler(){};
     void get(HTTPServerRequest &request, HTTPServerResponse &response) override;
 
 };

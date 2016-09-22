@@ -15,13 +15,13 @@ using Poco::Util::ServerApplication;
 
 class RESTServerApplication: public ServerApplication {
 public:
-    RESTServerApplication(std::unordered_map<std::string, BaseRESTRequestHandler* > router):_router(router){};
+    RESTServerApplication(RouteMap router):_router(router.begin(), router.end()){};
 
 protected:
     int main(const std::vector<std::string>& args);
 
 private:
-    std::unordered_map<std::string, BaseRESTRequestHandler* > _router;
+    RouteMap _router;
 };
 
 

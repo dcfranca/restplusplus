@@ -11,6 +11,7 @@
 class PizzaREST: public BaseRESTRequestHandler {
 
 public:
+    PizzaREST():BaseRESTRequestHandler(){};
     void get(HTTPServerRequest &request, HTTPServerResponse &response) override;
 
 };

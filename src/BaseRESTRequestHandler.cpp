@@ -7,50 +7,49 @@
 
 void BaseRESTRequestHandler::handleRequest(HTTPServerRequest& request, HTTPServerResponse& response) {
     response.setContentType("application/json");
+    Object::Ptr responseData;
+    std::ostringstream& ostr = (std::ostringstream&)response.send();
     if (request.getMethod() == "GET") {
         std::cerr << "\nFound Get method";
-        this->get(request, response);
+        responseData = this->get(request, response);
     }
     else if (request.getMethod() == "POST") {
-        this->post(request, response);
+        responseData = this->post(request, response);
     }
     else if (request.getMethod() == "PUT") {
-        this->put(request, response);
+        responseData = this->put(request, response);
     }
     else if (request.getMethod() == "DELETE") {
-        this->put(request, response);
+        responseData = this->put(request, response);
     }
+    responseData->stringify(ostr);
 }
 
-void BaseRESTRequestHandler::get(HTTPServerRequest &request, HTTPServerResponse &response) {
+Object::Ptr BaseRESTRequestHandler::get(HTTPServerRequest &request, HTTPServerResponse &response) {
     std::cerr << "\nBase GET WRONG ****\n";
     response.setStatus("405");
     std::ostream& ostr = response.send();
     ostr << "Method not allowed";
+    return new Object;
 }
 
-void BaseRESTRequestHandler::post(HTTPServerRequest &request, HTTPServerResponse &response) {
+Object::Ptr BaseRESTRequestHandler::post(HTTPServerRequest &request, HTTPServerResponse &response) {
     response.setStatus("405");
     std::ostream& ostr = response.send();
     ostr << "Method not allowed";
+    return new Object;
 }
 
-void BaseRESTRequestHandler::put(HTTPServerRequest &request, HTTPServerResponse &response) {
+Object::Ptr BaseRESTRequestHandler::put(HTTPServerRequest &request, HTTPServerResponse &response) {
     response.setStatus("405");
     std::ostream& ostr = response.send();
     ostr << "Method not allowed";
+    return new Object;
 }
 
-void BaseRESTRequestHandler::del(HTTPServerRequest &request, HTTPServerResponse &response) {
+Object::Ptr BaseRESTRequestHandler::del(HTTPServerRequest &request, HTTPServerResponse &response) {
     response.setStatus("405");
     std::ostream& ostr = response.send();
     ostr << "Method not allowed";
+    return new Object;
 }
-
-
-/*
- * route => std::unordered_map
- * url -> class
- * class must implement or get/post/put and inherit BaseRestRequestHandler
- * the router is made by the factory
- */

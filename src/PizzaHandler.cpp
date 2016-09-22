@@ -5,12 +5,25 @@
 #include "../include/PizzaHandler.h"
 
 #include <iostream>
+#include <vector>
 
-void PizzaHandler::get(HTTPServerRequest &request, HTTPServerResponse &response) {
+#include <Poco/JSON/Array.h>
+
+using Poco::JSON::Array;
+
+Object::Ptr PizzaHandler::get(HTTPServerRequest &request, HTTPServerResponse &response) {
 
     std::cerr << "\nFound Get method for Pizza!";
 
-    std::ostream& ostr = response.send();
+    Object::Ptr data = new Object;
+    Array ingredients;
+    //bleh... Poco needs a better interface for it
+    ingredients.add("basil");
+    ingredients.add("tomato");
+    ingredients.add("cheese");
+    data->set("flavor", "margueritta");
+    data->set("ingredients", ingredients);
+    data->set("price", 7.5f);
 
-    ostr << "{\"flavor\": \"Pepperoni\"}";
+    return data;
 }

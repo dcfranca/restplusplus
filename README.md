@@ -27,11 +27,11 @@ The basic functionalities is pretty simple.
 
 `RESTServerApplication` has a constructor that receives a router and port (default to 8080) 
 
-###What's the Router param?
+### What's the Router param?
 
 The Router param is an associative array with they keys being the URI and the value being a handler for that URI.
 
-###How to define a handler
+### How to define a handler
 
 You just need to subclass `BaseRESTRequestHandler` and implement the method corresponding to the HTTP method you want to respond to.
 This method receives a request and response objects and return a `Poco::JSON::Object`
